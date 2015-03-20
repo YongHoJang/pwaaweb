@@ -1,0 +1,18 @@
+<div id ="main-top" class="row">
+    <div id="proj-title" class="col-xs-4 main-menu">
+        Pacific Wa'a
+    </div>
+    <div class="col-xs-5 main-menu">
+        <ul class="nav nav-pills ">
+            <li role="presentation" {% if 'index' == active_page %} class="active"{% endif %}>
+                <a href="{{url_for('facade.index')}}">Home</a>
+            </li>
+            <li role="presentation" {% if 'browse' == active_page %} class="active"{% endif %}>
+                <a href="{{url_for('facade.browse')}}">Browse</a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-xs-3 main-menu" style="text-align:right;margin-top:15px;">
+        <a href="" style="margin-right:50px;">Login</a>
+    </div>
+</div>

@@ -1,0 +1,96 @@
+{% set active_page = "browse" %}
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        {% include '_head_import.html' %}
+        <link href="{{ url_for('facade.static', filename='css/main.css')}}" rel="stylesheet" media="screen">  
+        <script type="text/javascript" src="{{ url_for('facade.static', filename='js/slidepanel-right.js')}}"></script>
+    </head>
+    <body>
+        <div class="container-fluid ">
+
+            {% include '_top_nav_import.html' %}
+
+            <div id="main-outer" >
+                <div id="main-content">
+                    <nav id="main-nav" style="margin-bottom:50px;">
+                        <ul id="navigation">
+                            <li>
+                            <a href="#panel" id="panel-button">&laquo;&nbsp;open</a>
+                            </li>    
+                        </ul>
+                    </nav>
+                    <table class="table" id="peoples-table">
+                        <tr>
+                            <td style="text-align:center"><a href="">Abelam</a></td>
+                            <td style="text-align:center"><a href="">Angu</a></td>
+                            <td style="text-align:center"><a href="">Baining</a></td>
+                            <td style="text-align:center"><a href="">Baruya</a></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center"><a href="">Bilibil</a></td>
+                            <td style="text-align:center"><a href="">Chambri</a></td>
+                            <td style="text-align:center"><a href="">Enga</a></td>
+                            <td style="text-align:center"><a href="">Etoro</a></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center"><a href="">Fore</a></td>
+                            <td style="text-align:center"><a href="">Gadsup</a></td>
+                            <td style="text-align:center"><a href="">Gogodala</a></td>
+                            <td style="text-align:center"><a href="">Haroli</a></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center"><a href="">Hewa</a></td>
+                            <td style="text-align:center"><a href="">Huli</a></td>
+                            <td style="text-align:center"><a href="">Iatmul</a></td>
+                            <td style="text-align:center"><a href="">Kaluli</a></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center"><a href="">...</a></td>
+                            <td style="text-align:center"><a href="">...</a></td>
+                            <td style="text-align:center"><a href="">...</a></td>
+                            <td style="text-align:center"><a href="">...</a></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center"><a href="">...</a></td>
+                            <td style="text-align:center"><a href="">...</a></td>
+                            <td style="text-align:center"><a href="">...</a></td>
+                            <td style="text-align:center"><a href="">...</a></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center">...</td>
+                            <td style="text-align:center">...</td>
+                            <td style="text-align:center">...</td>
+                            <td style="text-align:center">...</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="panel">
+                </div>
+
+            </div> 
+        </div>
+        
+        <script>
+            $(function() {
+
+                        // Resize map height
+                // *****
+                var top_height = $('#main-top').height() + 70;
+
+                //$('#peoples-table').height($(window).height() - top_height);
+                $("#panel").height($(window).height() - top_height);
+
+                $(window).resize(function() {
+                    var bodyheight = $(window).height() - top_height;
+                    //$("#peoples-table").height(bodyheight);
+                    $("#panel").height(bodyheight);
+                }); 
+
+            });
+        </script>
+    
+    </body>
+
+</html>
