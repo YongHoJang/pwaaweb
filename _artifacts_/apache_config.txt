@@ -1,7 +1,7 @@
 <VirtualHost *:80>
     ServerName status.pacificwaa.org
 
-    WSGIDaemonProcess admin user=admin group=admin processes=4 threads=4
+    WSGIDaemonProcess pwaaweb user=admin group=admin processes=4 threads=4
     WSGIScriptAlias / /home/admin/PYENV/pwaa_project/pwaaweb/prj/pwaa.wsgi
 
     <Directory /home/admin/PYENV/pwaa_project>
