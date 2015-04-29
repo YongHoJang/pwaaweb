@@ -1,5 +1,5 @@
 <VirtualHost *:80>
-    ServerName status.pacificwaa.org
+    ServerName 104.236.135.47
 
     WSGIDaemonProcess pwaaweb user=admin group=admin processes=4 threads=4
     WSGIScriptAlias / /home/admin/PYENV/pwaa_project/pwaaweb/prj/pwaa.wsgi
@@ -9,5 +9,6 @@
         WSGIApplicationGroup %{GLOBAL}
         Order deny,allow
         Allow from all
+        Require all granted
     </Directory>
 </VirtualHost>
