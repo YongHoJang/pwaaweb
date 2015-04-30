@@ -8,14 +8,13 @@ from flask.ext.mongoengine import MongoEngine
 app = Flask(__name__)
 app.config.from_object('settings')
 
-# Register blueprints
-app.register_blueprint(mdatastore_pack, url_prefix='/mdstore') # mdatastore is for a back end logic tier.
-app.register_blueprint(facade_pack, url_prefix='/f') # facade is for a front end
-
-
 # Connect mongodb
 db = MongoEngine(app)
 
+
+# Register blueprints
+app.register_blueprint(mdatastore_pack, url_prefix='/mdstore') # mdatastore is for a back end logic tier.
+app.register_blueprint(facade_pack, url_prefix='/f') # facade is for a front end
 
 @app.route('/')
 def index():

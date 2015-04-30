@@ -5,3 +5,4 @@ import sys, os
 sys.path.insert(0, '/home/admin/PYENV/pwaa_project/pwaaweb/prj')
 
 from server import app as application
+from server import db
