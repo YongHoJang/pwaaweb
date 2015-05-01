@@ -1,6 +1,6 @@
 import datetime
 from flask import url_for 
-from server import db 
+from prj import db 
 
 
 class TestObj(db.Document):

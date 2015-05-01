@@ -1,14 +1,16 @@
-from facade import app
-from facade import facade_pack as package
-from flask import render_template
+from flask import render_template, Blueprint
 
-@package.route('/')
+mod_facade = Blueprint('facade', __name__, template_folder='templates', 
+    static_folder='static')
+
+
+@mod_facade.route('/')
 def index():
     
     return render_template('index.html')
 
 
-@package.route('/browse')
+@mod_facade.route('/browse')
 def browse():
     return render_template('browse.html')
 
