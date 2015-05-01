@@ -5,7 +5,7 @@
     WSGIScriptAlias / /home/admin/PYENV/pwaaweb/pwaa.wsgi
 
     <Directory /home/admin/PYENV/pwaaweb>
-        WSGIProcessGroup mserver
+        WSGIProcessGroup pwaaweb
         WSGIApplicationGroup %{GLOBAL}
         Order deny,allow
         Allow from all
