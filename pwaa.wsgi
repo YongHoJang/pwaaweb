@@ -1,7 +1,7 @@
-activate_this = '/home/admin/PYENV/pwaa_project/bin/activate_this.py'
+activate_this = '/home/admin/PYENV/pwaa/ENV/bin/activate_this.py'
 execfile(activate_this, dict(__file__=activate_this))
 
 import sys, os
-sys.path.insert(0, '/home/admin/PYENV/pwaa_project/pwaaweb/prj')
+sys.path.insert(0, '/home/admin/PYENV/pwaaweb/prj')
 
 from prj import app as application

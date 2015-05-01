@@ -2,8 +2,7 @@
     ServerName 104.236.135.47
 
     WSGIDaemonProcess pwaaweb user=admin group=admin processes=4 threads=4
-    WSGIScriptAlias / /home/admin/PYENV/pwaa_project/pwaaweb/prj/pwaa.wsgi
-    WSGIPythonPath /home/admin/PYENV/pwaa_project/prj
+    WSGIScriptAlias / /home/admin/PYENV/pwaaweb/pwaa.wsgi
 
     <Directory /home/admin/PYENV/pwaa_project>
         WSGIProcessGroup mserver
