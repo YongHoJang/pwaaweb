@@ -1,4 +1,4 @@
-activate_this = '/home/admin/PYENV/pwaa/ENV/bin/activate_this.py'
+activate_this = '/home/admin/PYENV/pwaaweb/ENV/bin/activate_this.py'
 execfile(activate_this, dict(__file__=activate_this))
 
 import sys, os
