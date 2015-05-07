@@ -38,92 +38,79 @@
         <div id="panel">
         </div>
     </div>    
-      
-    
+          
     <!--
     <div class="row">
       <div class="col-md-6">Description</div>
       <div class="col-md-6">Available Resources</div>
     </div>
     -->
-</div>    
+</div>  
+    
 <script>
-    $(function() {
+$(function() {
 
-                // Resize map height
-        // *****
-        var top_height = $('#main-top').height() + 70;
-        
-        $('#map').height($(window).height() - top_height);
-        $("#panel").height($(window).height() - top_height);
-        
-        $(window).resize(function() {
-            var bodyheight = $(window).height() - top_height;
-            $("#map").height(bodyheight);
-            $("#panel").height(bodyheight);
-        }); 
-        
-        // MAP INITIALIZATION
-        // *****
-        
-        var map;
-        
-        require(["esri/map",
-                "esri/arcgis/utils",        
-                "esri/tasks/IdentifyTask",
-                "esri/tasks/IdentifyParameters",
-                "dojo/domReady!"], function(Map, arcgisUtils, IdentifyTask, IdentifyParams) {
-                    arcgisUtils.createMap("4263c3792e774f6e896ba959a8832cf0", "map").then(function (response) {
+    // Resize map height
+    // -------
+    var top_height = $('#main-top').height() + 70;
+
+    $('#map').height($(window).height() - top_height);
+    $("#panel").height($(window).height() - top_height);
+
+    $(window).resize(function() {
+        var bodyheight = $(window).height() - top_height;
+        $("#map").height(bodyheight);
+        $("#panel").height(bodyheight);
+    }); 
+
+    // MAP INITIALIZATION
+    // --------
+    var map;
+    var fLayers;
+    var fLayer;
+    require(["esri/map",
+        "esri/arcgis/utils",
+        "esri/layers/FeatureLayer",
+        "esri/graphic",
+        "esri/tasks/query",
+        "esri/geometry/Point", 
+        "dojo/domReady!"], 
+        function(Map, arcgisUtils, FeatureLayer, Graphic, Query, Point) {
+            // WebMap option to disable popups window
+            var createMapOptions = { ignorePopups: true };
+            // Create a map with a webmap from arcgis.com
+            arcgisUtils.createMap("4263c3792e774f6e896ba959a8832cf0", "map", createMapOptions).then(initializeMap);
+            
+            // Initialize Map and register related events.
+            function initializeMap(response) {
+                // Get a created map.
                 map = response.map;
-                map.on("click", identifyFeature); 
-                
-                // TODO: Configure tasks and params!!!!        
-                identifyTask = new IdentifyTask("http://sampleserver3.arcgisonline.com/ArcGIS/rest/services/BloomfieldHillsMichigan/Parcels/MapServer");        
-                identifyParams = new IdentifyParameters();
-                        
-                // Register a click event
-                function identifyFeature(evt) {
-                    //alert("x-coord:"); 
-                    //alert("x-coord: " + evt.mapPoint.x + "  y-coord: " + evt.mapPoint.y);    
-                    
-                    identifyParams.geometry = evt.mapPoint;
-                    identifyParams.mapExtent = map.extent;
-                    identifyTask.execute(identifyParams, function (idResults) {
-                        //addToMap(idResults, evt);
-                        alert("feature: " + idResults[0].displayFieldName);
-                    });
-                    
-                }
-                
-            });
-                        
-        });  // end require
-
-
+                // Create a feature layer to query
+                var serviceURL = "https://services1.arcgis.com/DnZ5orhsUGGdUZ3h/arcgis/rest/services/ProtoypeService_04222015/FeatureServer/0"
+                fLayer = new FeatureLayer(serviceURL, { outFields: ["LangName", "ISO_639"] } );    
+                // Register query event.
+                map.on('click', function(evt) {
+                    // Create a query
+                    var geometry = evt.mapPoint;
+                    var query = new Query();
+                    query.geometry = geometry;
+                    // Query a selected feature
+                    fLayer.queryFeatures(query, displayFeatureInfo);
+                });                        
+            }
         
-        
-        // TODO: Clean Up Later
-        
-        //var map = L.map('map').setView([-7.0, 152.0],6);
-        // Example using MapBox
-        //L.tileLayer('http://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
-        //    attribution: '',
-        //    maxZoom: 18,
-        //    id: 'examples.map-i875mjb7'
-        // }).addTo(map);
+            // Register a click event
+            function displayFeatureInfo(response) {
+                var feature = response.features[0];
+                // Get iso 639 code to be used in subsequent queries.
+                var iso639 = feature.attributes['ISO_639'];
+                // For debugging
+                alert("selected feature iso 639 code: " + iso639);
+            }
+        }
+    );  // End require
 
-
-        //var mb = L.tileLayer('http://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
-        //    attribution: '',
-        //    maxZoom: 18,
-        //    id: 'examples.map-i875mjb7'
-        //});
-
-        //L.control.overview([mb]).addTo(map);
-        
-
-        
-    });
+}); // End outer function
 </script>
     
 </body>

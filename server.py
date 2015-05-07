@@ -1,4 +1,4 @@
-
+# When it runs standalone
 if __name__ == "__main__":
     from prj import app
     app.debug = True
