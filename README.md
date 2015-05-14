@@ -15,6 +15,9 @@ apt-get install virtualenv
 ```
 virtualenv pwaa_prj
 ```
+- Clone this repository to your environment by following below link.
+
+https://git-scm.com/book/it/v2/Git-Basics-Getting-a-Git-Repository
 
 - Install mongodb: follow an instruction in the below link.
 
