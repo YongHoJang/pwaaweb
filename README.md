@@ -26,6 +26,12 @@ apt-get install git
 
 https://git-scm.com/book/it/v2/Git-Basics-Getting-a-Git-Repository
 
+- In your folder, activate virtual env & install required packages using requirements.txt from this project:
+```
+source bin/activate
+pip install -r _artifacts_/requirements.txt
+```
+
 - Install mongodb: follow an instruction in the below link.
 
 http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/
