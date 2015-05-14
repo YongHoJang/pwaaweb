@@ -8,7 +8,7 @@ mod_mdstore = Blueprint('mdatastore', __name__, template_folder='templates',
 
 @mod_mdstore.route('/')
 def index():
-    return 'mdatastore says hello'
+    return 'mdatastore says hello!!!'
 
 # Delete this later
 @mod_mdstore.route('/test_obj')
