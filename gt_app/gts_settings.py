@@ -1,17 +1,6 @@
-MONGODB_SETTINGS = {
-    'db' : 'pwaa',
-    'host' : 'localhost',
-    'port' : 27017
-}
-
-
-# -----------------------
-#
-# GeoTagger Server Config
-#
-# -----------------------
-
 from pymongo import MongoClient
+from schemas import domain
+
 
 # Enable reads (GET), inserts (POST) and DELETE for resources/collections
 # (if you omit this line, the API will default to ['GET'] and provide
@@ -56,8 +45,18 @@ SECRET_KEY = 'B1Xp83k/4qY1S~GIH!jnM]KES/,?CT'
 # App debug mode
 DEBUG = True
 
-# ---------------------------
-#
-# GeoTagger Server Config End
-#
-# ---------------------------
+# Factual API KEY
+FACTUAL_APIKEY = 'pC9gGyNpqpTupGkc89DGOpKFAzAtPyo9EVawfHoR'
+
+
+'''
+DOMAIN = domain
+MONGO_HOST= 'localhost',
+MONGO_PORT= 27017,
+MONGO_DBNAME= 'geotaggerdb'
+'''
+
+
+
+
+
