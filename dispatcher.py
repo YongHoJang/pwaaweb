@@ -12,4 +12,4 @@ application = DispatcherMiddleware(pwaa, {
 # When it runs standalone in development
 if __name__ == "__main__":
     application.debug = True
-    run_simple('localhost', 5000, application, use_reloader=True)
+    run_simple('0.0.0.0', 5000, application, use_reloader=True)
