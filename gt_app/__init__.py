@@ -34,12 +34,12 @@ from proxy.views_factual import proxy_views
 from account.views import account_views, login
 from account.models import User
 from dstore.views import dstore_views
-from facade.views import facade_views
+#from facade.views import facade_views
 
 app.register_blueprint(account_views, url_prefix='/account')
 app.register_blueprint(proxy_views, url_prefix='/proxy')
 app.register_blueprint(dstore_views, url_prefix='/dstore')
-app.register_blueprint(facade_views, url_prefix='')
+#app.register_blueprint(facade_views, url_prefix='')
 
 # Flask-Login Configuration
 login_manager = LoginManager()
