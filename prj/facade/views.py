@@ -6,7 +6,6 @@ mod_facade = Blueprint('facade', __name__, template_folder='templates',
 
 @mod_facade.route('/')
 def index():
-    
     return render_template('index.html')
 
 
