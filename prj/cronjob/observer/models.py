@@ -1,5 +1,7 @@
 import datetime
 from mongoengine import *
+from flask.ext.mongoengine import MongoEngine
+
 
 connect('pwaa', host='mongodb://localhost/pwaa', port=27017)
 
