@@ -1,5 +1,5 @@
 MONGODB_SETTINGS = {
-    'db' : 'pwaa',
+    'db' : 'pwaadb',
     'host' : 'localhost',
     'port' : 27017
 }
