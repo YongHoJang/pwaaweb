@@ -7,6 +7,7 @@
         <script type="text/javascript" src="{{ url_for('facade.static', filename='js/slidepanel-right.js')}}"></script>
     </head>
     <body>
+
         <div class="container-fluid ">
 
             {% include '_top_nav_import.html' %}
@@ -66,8 +67,9 @@
                     </table>
                 </div>
 
-                <div id="panel">
-                </div>
+                <!-- right panel  -->
+                {% include '_right_panel.html' %}
+                <!-- // right panel  -->
 
             </div> 
         </div>
