@@ -25,6 +25,7 @@ def get_sil_data():
     print "======> view.py -> get_sil_data() "
     # Get a iso code to fetch.
     iso_code = request.args.get('iso_code')
+    print "===> iso_code: ", iso_code
     # Get the sil info from db
     res_bson = current_app.db.sildata.find_one({'iso_code':iso_code})
     # If no record in db, send to user an empty response.    

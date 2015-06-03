@@ -23,10 +23,10 @@
                     </nav>
                     <table class="table" id="peoples-table">
                         <tr>
-                            <td style="text-align:center"><a href="">Abelam</a></td>
-                            <td style="text-align:center"><a href="">Angu</a></td>
-                            <td style="text-align:center"><a href="">Baining</a></td>
-                            <td style="text-align:center"><a href="">Baruya</a></td>
+                            <td style="text-align:center"><a href="javascript: getPanelData( 'aaw' );">Abelam</a></td>
+                            <td style="text-align:center"><a href="javascript: getPanelData( 'aaw' );">Angu</a></td>
+                            <td style="text-align:center"><a href="javascript: getPanelData( 'aaw' );">Baining</a></td>
+                            <td style="text-align:center"><a href="javascript: getPanelData( 'aaw' );">Baruya</a></td>
                         </tr>
                         <tr>
                             <td style="text-align:center"><a href="">Bilibil</a></td>
@@ -76,20 +76,16 @@
         
         <script>
             $(function() {
-
-                        // Resize map height
+                // Resize map height
                 // *****
                 var top_height = $('#main-top').height() + 70;
-
                 //$('#peoples-table').height($(window).height() - top_height);
                 $("#panel").height($(window).height() - top_height);
-
                 $(window).resize(function() {
                     var bodyheight = $(window).height() - top_height;
                     //$("#peoples-table").height(bodyheight);
                     $("#panel").height(bodyheight);
                 }); 
-
             });
         </script>
     

@@ -99,3 +99,8 @@ ul.nav li a {
 
 .panel_data{ background-color: #F3F3F3; padding: 3px; overflow: hidden; height:auto; }
 
+/* loading bar */
+#mask{position: absolute; left: 0; top: 0; z-index: 10; background-color: ; display: none; opacity:0.2; filter:alpha(opacity=20);}
+#loading_window {position: absolute;width: 126px;height: 122px;z-index: 20;display: none;}
+#loading_window .loading_bar {width: 100px;height: 100px;margin: 0 auto;}
+#loading_window .loading_bottom {width: 126px;height: 22px;}
