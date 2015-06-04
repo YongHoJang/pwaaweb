@@ -1,4 +1,6 @@
-//var dataStr = " sample text "
+
+// global
+var G_JFM_COUNTRIES = {};
 
 $(document).ready(function(){
     $("#navigation li a").on("click", function(e){
@@ -21,9 +23,30 @@ $(document).ready(function(){
         closeSidePanel();
     }); // end close button event handler
 
+	// get_jfm_countries
+	setJfmCountries();
 
-}); 
+});		// END: $(document).ready(function(){
 
+
+function setJfmCountries(){
+	var param = "";
+	var url = "/f/get_jfm_countries";
+	$.ajax({
+		url: url,
+		data: param,
+		type: 'get',
+		dataType: 'json',	// html   json
+		cache: false,
+		success: function( response ) {
+			G_JFM_COUNTRIES = response;
+			//alert( G_JFM_COUNTRIES["aai"] );
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown) {
+			alert('Ajax failure');
+		}
+	});
+}
 
 // side open
 function openSidePanel() {
@@ -110,8 +133,14 @@ function getPanelData( iso_code ){
     $('#div_sildata').html( "<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>" );
     $('#div_jfmdata').html( "<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>" );
     getSilDataOne( iso_code );
-    var languageIds = 12200; // temp
-    getJfmDescData( languageIds );
+	var languageIds = G_JFM_COUNTRIES[iso_code];	
+	if( !languageIds ) languageIds = "";
+	$('#div_languageIds').html( languageIds ); // test	
+	if( languageIds ){
+		getJfmDescData( languageIds );
+	}else{
+		loadingBarHide();  // loading
+	}
 }   
 
 
@@ -135,7 +164,7 @@ function getJfmDescDataCallback(response){
     // shortDescription      longDescription
     var obj_1 = response.data[0];
     var obj_2 = response.data[1];
-    if( obj_1  && obj_1._embedded.mediaComponents[0] ){
+    if( obj_1  && obj_1._embedded && obj_1._embedded.mediaComponents[0] ){
         openSidePanel();
         re_html = obj_1._embedded.mediaComponents[0].longDescription;
         re_html = re_html.replace(/(?:\r\n|\r|\n)/g, '<br />');
@@ -153,6 +182,6 @@ function getJfmDescDataCallback(response){
         re_html += "<p>&nbsp;</p><p>&nbsp;</p>";
         $('#div_jfmdata').html( re_html );
     }    
-    loadingBarHide()  // loading
+    loadingBarHide();  // loading
 }
 

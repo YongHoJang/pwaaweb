@@ -42,6 +42,7 @@ h1 = hmac.new(secret, curr_time+key, hashlib.sha1)
 api_sig = h1.hexdigest()
 res_str = '/all?api_key=7d535d9ec739be2e4b1d643e128d2562&api_sig=' + api_sig
 
+
 # http connect
 conn = httplib.HTTPSConnection("pcalspdata-qa.api.sil.org")
 conn.request("GET",res_str)
@@ -69,18 +70,35 @@ if res.reason == "OK" :
         # convert
         res_text = json.dumps(entry)
         res_doc = json.loads(res_text)
-        # data table
+        # data table, 566 inserted
         mongoCon.pwaadb.sildata.update( {"iso_code":res_doc["iso_code"]}, res_doc, upsert=True)
-        # history table
-        mongoCon.pwaadb.sildata_history.update( {"iso_code":res_doc["iso_code"], "sys_year_week":res_doc["sys_year_week"]}, res_doc, upsert=True)
-
 else:
     # log
     log_str = "HTTPSConnection Error"
     print_log( log_str )
 
-
 # log
 log_str = "Total count: %d" % count
 print_log( log_str )
+
+
+
+
+# for analytics
+count_al = 0
+rows = mongoCon.pwaadb.sildata.group( key={"existing_scripture":1}, condition={ "existing_scripture":  { "$ne": "" } }, initial={"count": 0}, reduce = 'function(obj, prev){ prev.count++; }'   )
+for row in rows:
+    count_al += 1
+    row["count"] = int(row["count"])
+    row["sys_reg_date_time"] = now_str
+    row["sys_year_week"] = week_str        
+    # 8  inserted
+    mongoCon.pwaadb.sildata_analytics.update( {"existing_scripture":row["existing_scripture"], "sys_year_week":week_str}, row, upsert=True)
+
+# log
+log_str = "Total analytics count: %d" % count_al
+print_log( log_str )
+
+
+
 

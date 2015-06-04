@@ -11,7 +11,7 @@
         <div class="container-fluid ">
 
             {% include '_top_nav_import.html' %}
-
+                        
             <div id="main-outer" >
                 <div id="main-content">
                     <nav id="main-nav" style="margin-bottom:50px;">
@@ -23,47 +23,20 @@
                     </nav>
                     <table class="table" id="peoples-table">
                         <tr>
-                            <td style="text-align:center"><a href="javascript: getPanelData( 'aaw' );">Abelam</a></td>
-                            <td style="text-align:center"><a href="javascript: getPanelData( 'aaw' );">Angu</a></td>
-                            <td style="text-align:center"><a href="javascript: getPanelData( 'aaw' );">Baining</a></td>
-                            <td style="text-align:center"><a href="javascript: getPanelData( 'aaw' );">Baruya</a></td>
+                        <!-- aai exist -->
+                        {% set count = 0 %}
+                        {% for row in res_obj %}
+                            <td style="text-align:center"><a href="javascript: getPanelData( '{{ row.iso_code }}' );">{{ row.reference_name }}({{ row.iso_code }})</a></td>
+                            {% set count = count +1 %}
+                            {% set mod = count%4 %}
+                            {% if mod == 0 %}
+                                </tr>
+                                <tr>
+                            {% endif %}
+                        {% endfor %}
+
                         </tr>
-                        <tr>
-                            <td style="text-align:center"><a href="">Bilibil</a></td>
-                            <td style="text-align:center"><a href="">Chambri</a></td>
-                            <td style="text-align:center"><a href="">Enga</a></td>
-                            <td style="text-align:center"><a href="">Etoro</a></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align:center"><a href="">Fore</a></td>
-                            <td style="text-align:center"><a href="">Gadsup</a></td>
-                            <td style="text-align:center"><a href="">Gogodala</a></td>
-                            <td style="text-align:center"><a href="">Haroli</a></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align:center"><a href="">Hewa</a></td>
-                            <td style="text-align:center"><a href="">Huli</a></td>
-                            <td style="text-align:center"><a href="">Iatmul</a></td>
-                            <td style="text-align:center"><a href="">Kaluli</a></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align:center"><a href="">...</a></td>
-                            <td style="text-align:center"><a href="">...</a></td>
-                            <td style="text-align:center"><a href="">...</a></td>
-                            <td style="text-align:center"><a href="">...</a></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align:center"><a href="">...</a></td>
-                            <td style="text-align:center"><a href="">...</a></td>
-                            <td style="text-align:center"><a href="">...</a></td>
-                            <td style="text-align:center"><a href="">...</a></td>
-                        </tr>
-                        <tr>
-                            <td style="text-align:center">...</td>
-                            <td style="text-align:center">...</td>
-                            <td style="text-align:center">...</td>
-                            <td style="text-align:center">...</td>
-                        </tr>
+
                     </table>
                 </div>
 

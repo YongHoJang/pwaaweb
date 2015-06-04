@@ -12,12 +12,20 @@ mod_facade = Blueprint('facade', __name__, template_folder='templates',
 
 @mod_facade.route('/')
 def index():
+    print "======> view.py -> index() "
     return render_template('index.html')
 
 
 @mod_facade.route('/browse')
 def browse():
-    return render_template('browse.html')
+    print "======> view.py -> browse() "
+    # #rows = mongoCon.pwaadb.test.find().sort([("name", 1)])
+    rows_sil = current_app.db.sildata.find().sort([("reference_name", 1)])
+    res_str = json_util.dumps(rows_sil)
+    res_obj = json.loads(res_str)
+    #print "======> res_obj : ", res_obj
+    return render_template('browse.html', res_obj=res_obj)
+
 
 
 @mod_facade.route('/getsildata')
@@ -85,3 +93,21 @@ def get_jfmdesc_data():
 
 
 
+# get jfm_countries  Ajax call
+@mod_facade.route('/get_jfm_countries')
+def get_jfm_countries():
+    print "======> view.py -> get_jfm_countries() "
+    rows = current_app.db.jfm_countries.find()
+    tmp_arr = []
+    re_str = "{"
+    for row in rows:
+        if row["iso_code"] != "":
+            tmp_str =  '"'+ row["iso_code"] + '" : "' +  str(row["languageId"]) + '"'
+            tmp_arr.append( tmp_str )
+
+    join_str = " , "
+    tmp_str2 = join_str.join( tmp_arr )
+    re_str += tmp_str2 + " }"
+    #re_str = "{\"aaa\":\"123\"}"
+    res_obj = json.loads(re_str)
+    return jsonify(res_obj)
